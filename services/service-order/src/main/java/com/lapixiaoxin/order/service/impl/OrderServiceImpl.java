@@ -23,10 +23,8 @@ public class OrderServiceImpl implements OrderService {
     private DiscoveryClient discoveryClient;
     @Autowired
     private RestTemplate restTemplate;
-
     @Autowired //一定导入 spring-cloud-starter-loadbalancer
     private LoadBalancerClient loadBalancerClient;
-
     @Override
     public Order createOrder(Long userId, Long productId) {
         Product product = getProductFromRemoteWithLoadBalanceAnnotation(productId);
