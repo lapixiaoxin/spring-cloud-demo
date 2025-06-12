@@ -4,6 +4,8 @@ spring:
   profiles:
     # 激活对应的命名空间
     active: dev
+    # 引入 application-feign.yml, 使之生效
+    include: feign
   application:
     name: service-order
   cloud:
@@ -14,6 +16,11 @@ spring:
             enabled: false
           # 激活对应的命名空间，默认为public
           namespace: ${spring.profiles.active:public}
+
+logging:
+  level:
+    com.lapixiaoxin.order.feign: debug
+
 
 # 依据环境设置相应配置
 ## namespace-dev

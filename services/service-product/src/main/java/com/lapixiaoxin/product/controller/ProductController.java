@@ -2,6 +2,8 @@ package com.lapixiaoxin.product.controller;
 
 import com.lapixiaoxin.product.bean.Product;
 import com.lapixiaoxin.product.service.ProductService;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +21,11 @@ public class ProductController {
      * 查询商品
      */
     @GetMapping("/product/{id}")
-    public Product getProduct(@PathVariable("id") Long id) {
-        Product product = productService.getProductById(id);
+    public Product getProduct(@PathVariable("id") Long id, HttpServletRequest request) {
+        String header = request.getHeader("X-Token");
+        System.out.println("header: " + header);
         log.info("hello");
+        Product product = productService.getProductById(id);
         return product;
     }
 

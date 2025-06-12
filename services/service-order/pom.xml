@@ -31,7 +31,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.lapixiaoxin</groupId>
             <artifactId>model</artifactId>

@@ -1,6 +1,7 @@
 package com.lapixiaoxin.order.service.impl;
 
 import com.lapixiaoxin.order.bean.Order;
+import com.lapixiaoxin.order.feign.ProductFeignClient;
 import com.lapixiaoxin.order.service.OrderService;
 import com.lapixiaoxin.product.bean.Product;
 import lombok.extern.slf4j.Slf4j;
@@ -25,10 +26,14 @@ public class OrderServiceImpl implements OrderService {
     private RestTemplate restTemplate;
     @Autowired //一定导入 spring-cloud-starter-loadbalancer
     private LoadBalancerClient loadBalancerClient;
+    @Autowired
+    private ProductFeignClient productFeignClient;
+
     @Override
     public Order createOrder(Long userId, Long productId) {
-        Product product = getProductFromRemoteWithLoadBalanceAnnotation(productId);
-
+//        Product product = getProductFromRemoteWithLoadBalanceAnnotation(productId);
+        // 使用OpenFeign进行远程调用
+        Product product = productFeignClient.getProductById(productId);
         Order order = new Order();
         order.setOrderId(123L);
         order.setTotalAmount(product.getPrice().multiply(new BigDecimal(product.getNum())));
