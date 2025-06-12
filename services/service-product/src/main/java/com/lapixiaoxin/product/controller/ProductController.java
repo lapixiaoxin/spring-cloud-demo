@@ -2,7 +2,6 @@ package com.lapixiaoxin.product.controller;
 
 import com.lapixiaoxin.product.bean.Product;
 import com.lapixiaoxin.product.service.ProductService;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
