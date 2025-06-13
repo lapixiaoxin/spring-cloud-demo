@@ -12,6 +12,10 @@
     <modules>
         <module>service-order</module>
         <module>service-product</module>
+        <module>seata-account</module>
+        <module>seata-order</module>
+        <module>seata-business</module>
+        <module>seata-storage</module>
     </modules>
 
     <!--    <dependencyManagement>-->
@@ -46,6 +50,11 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+        <!-- 分布式事务-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
