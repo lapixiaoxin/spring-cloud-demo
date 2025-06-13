@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    include: route
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+
+# 使用80端口访问的时候就不用带端口号
+server:
+  port: 80

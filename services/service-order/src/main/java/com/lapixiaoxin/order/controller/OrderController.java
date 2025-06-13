@@ -5,9 +5,11 @@ import com.lapixiaoxin.order.config.OrderProperties;
 import com.lapixiaoxin.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+//@RequestMapping("/api/order")
 //@RefreshScope
 @RestController
 public class OrderController {
@@ -29,7 +31,7 @@ public class OrderController {
     }
 
 
-    @GetMapping("/order/create")
+    @GetMapping("/create")
     public Order creteOrder(@RequestParam("userId") Long userId, @RequestParam("productId") Long productId) {
 
         Order order = orderService.createOrder(userId, productId);

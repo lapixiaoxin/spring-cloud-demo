@@ -1,0 +1,36 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: bing-route
+          uri: https://cn.bing.com/
+          predicates:
+            - name: Path
+              args:
+                patterns: /search
+            - name: Query
+              args:
+                param: q
+                regexp: haha
+          order: 10
+        # 多种写法
+        - id: order-route
+          uri: lb://service-order
+          # 断言的配置（有很多中，可以参考SpringCloud官网）
+          predicates:
+            # - Path=/api/order/**
+            - name: Path
+              args:
+                patterns: /api/order/**
+                matchTrailingSlash: true
+          filters:
+            # 访问路径重写的filter, 相当于 /api/order/ab/c 路径，在 RequestMapping 中写成 /ab/c 就可以访问
+            - RewritePath=/api/order/?(?<segment>.*), /$\{segment}
+          order: 1
+        - id: product-route
+          uri: lb://service-product
+          predicates:
+            - Path=/api/product/**
+          filters:
+            - RewritePath=/api/product/?(?<segment>.*), /$\{segment}
+          order: 2
